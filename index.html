@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kia</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/flowers.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+  <style>
+    /* Contenedor que cubre toda la página */
+    .flowers-container {
+      position: fixed;   /* 🔥 fijo para que esté siempre encima */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; /* para no bloquear clics en tu contenido */
+      z-index: 999;    /* encima de todo */
+      overflow: hidden;
+    }
+
+    .flower {
+      position: absolute;
+      transform-origin: center center;
+      will-change: transform, opacity;
+      animation: floatY var(--float,6s) ease-in-out infinite, bloom 1.2s ease forwards;
+    }
+
+    .flower .group-flower {
+      animation: sway 5s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    @keyframes floatY {
+      0%   { transform: translateY(0) scale(1); }
+      50%  { transform: translateY(-14px) scale(1.02); }
+      100% { transform: translateY(0) scale(1); }
+    }
+    @keyframes sway {
+      0%   { transform: rotate(0deg); }
+      50%  { transform: rotate(-6deg); }
+      100% { transform: rotate(0deg); }
+    }
+    @keyframes bloom {
+      0%   { opacity:0; transform:scale(0.5); }
+      100% { opacity:1; transform:scale(1); }
+    }
+
+    .flower .petal { fill: #ffd54a }
+    .flower .petal-dark { fill: #ffca28 }
+    .flower .center { fill: #fff3bf; stroke:#f5c12a; stroke-width:1 }
+    svg{width:100%;height:100%;overflow:visible;}
+  </style>
+</head>
+<body class="fondo-degradado">
+
+  <!-- 🌼 Flores que aparecen en toda la página -->
+  <div class="flowers-container"></div>
+
+  <!-- Tu contenido original -->
+  <div class="container-fluid p-0">
+    <div class="position-relative text-center text-white"
+         style="background: url('img/fondo.PNG') no-repeat center center/cover; height: 100vh;">
+      
+      <div class="position-absolute top-0 start-0 w-100 h-100"
+           style="background: rgba(50,50,50,0.6);"></div>
+      
+      <div class="position-absolute top-50 start-50 translate-middle">
+        <div class="p-4 rounded shadow-lg bg-dark bg-opacity-75">
+          <h1 class="fw-bold">TE QUIERO KIARA</h1>
+          <p class="lead">Espero te guste mi enfermita mental💗 </p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8 note-bg p-4 rounded shadow-lg d-flex align-items-center">
+        <div class="me-4 flex-shrink-0 img-bg">
+          <img src="img/Mi amor - Editado.jpg" alt="Imagen de ejemplo" class="img-fluid rounded photo">
+        </div>
+        <div>
+          <p class="mb-0">
+            No se como empezar pero ya que no puedo estar ahi para darte algo, pues te hice esto
+                        y por eso no vi tu serie, no es que digamos que es una "excusa" para no verla. Pero volviendo 
+                        al punto eres muy importante para mi, al punto de querer hacer absolutamente todo contigo,
+                        eres timida en cierta forma, inteligente, muy muy bonita, preciosa, tambien eres medio loquita
+                        y me gustas tal como eres, tu me conoces demasiado tiempo hasta en el tiempo donde hay cosas 
+                        que me gustaria olvidar y aun asi te sigo gustando.Y aunque pase el tiempo y si volvieramos al Hola como estas , 
+                        no me importa porque es contigo, porque me has gustado, me sigues gustando y siempre vas a estar
+                        en mi corazon por más de que pase lo que pase. 
+                        En mi mente se encuentra desde la niña que caminaba con su parlante hasta la universitaria berrinchuda que 
+                        no quiere ir a clases. No sabes cuanto me encantaría recogerte de la U, que vengas a mis partidos,
+                        presentarte a mis padres como mi enamorada, cuidarte cuando estes enferma, pero se que eso no se puede pero también se que se va a lograr
+                        y lo vamos a lograr juntos. pdt: Me consumio la IA y tmb iba a ser sorpresa lo del viaje pero no me aguante contartelo
+            <br><br>    
+            <strong>TE AMO KIARA ❤️</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="collage"></div>
+  <div class="foto"></div>
+  <div><span>Espero te guste</span></div>
+  <div class="button">
+    <button class="botones">
+      <a href="flower.html" style="color: #fff;">CLICK AQUÍ</a>
+    </button>
+  </div>
+
+  <script>
+    const container = document.querySelector('.flowers-container');
+
+    function crearFlor(x, y, size){
+      const f = document.createElement('div');
+      f.className = 'flower';
+      f.style.width = size+'px';
+      f.style.height = size+'px';
+      f.style.left = (x - size/2) + 'px';
+      f.style.top = (y - size/2) + 'px';
+      f.style.position = 'absolute';
+      f.style.setProperty('--float', (4 + Math.random()*4).toFixed(2)+'s');
+
+      f.innerHTML = `
+        <svg viewBox="-50 -50 100 100" xmlns="http://www.w3.org/2000/svg">
+          <g class="group-flower">
+            <ellipse class="petal" rx="12" ry="28" cx="0" cy="-36" transform="rotate(0)"/>
+            <ellipse class="petal-dark" rx="12" ry="28" cx="0" cy="-36" transform="rotate(60)"/>
+            <ellipse class="petal" rx="12" ry="28" cx="0" cy="-36" transform="rotate(120)"/>
+            <ellipse class="petal-dark" rx="12" ry="28" cx="0" cy="-36" transform="rotate(180)"/>
+            <ellipse class="petal" rx="12" ry="28" cx="0" cy="-36" transform="rotate(240)"/>
+            <ellipse class="petal-dark" rx="12" ry="28" cx="0" cy="-36" transform="rotate(300)"/>
+            <circle class="center" r="9" />
+          </g>
+        </svg>`;
+      container.appendChild(f);
+      setTimeout(()=>{ f.remove(); }, 15000);
+    }
+    
+
+    // Crear flores al hacer clic en cualquier parte
+    document.addEventListener('click', e=>{
+      crearFlor(e.clientX, e.clientY, 60+Math.random()*40);
+    });
+  </script>
+</body>
+</html>
